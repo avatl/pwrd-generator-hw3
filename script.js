@@ -49,7 +49,7 @@ function getPasswordOptions() {
   );
 
   // Ask them if they want uppercase letters - boolean
-  var hasUpperCasedCharacters = conrifm(
+  var hasUpperCasedCharacters = confirm(
     'Would you like to include upper cased characters?'
   );
 
@@ -87,40 +87,52 @@ function getPasswordOptions() {
 
 }
 
+// Random characters from first bowl into second bowl
+function getRandom(arr){
+    var randIndex = Math.floor(Math.random() * arr.length);
+    var randElement = arr[randIndex];
+
+    return randElement;
+}
+
 //Generate random array index every time
 function generatePassword() {
   var options = getPasswordOptions();
+  
   var result = [];
+  
   var possibleCharacters = [];
+
   var gauranteedCharacters = [];
 
   // If they do want lowercase letters, we concatenate that option array into the empty bowl array. If not, we move on.
   if (options.hasLowerCasedCharacters) {
     possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
-    gauranteedCharacters.push(getRandom(lowerCasedCharacters))
+    gauranteedCharacters.push(getRandom(lowerCasedCharacters));
   };
 
   // If they do want uppercase letters, we concatenate that option array into the empty bowl array. If not, we move on.
   if (options.hasUpperCasedCharacters) {
     possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
-    gauranteedCharacters.push(getRandom(upperCasedCharacters))
+    gauranteedCharacters.push(getRandom(upperCasedCharacters));
   };
 
   // If they do want special characters, we concatenate that option array into the empty bowl array. If not, we move on.
   if (options.hasSpecialCharacters) {
     possibleCharacters = possibleCharacters.concat(specialCharacters);
-    gauranteedCharacters.push(getRandom(specialCharacters))
+    gauranteedCharacters.push(getRandom(specialCharacters));
   };
 
   // If they do want numbers, we concatenate that option array into the empty bowl array. If not, we move on.
   if (options.hasNumericCharacters) {
     possibleCharacters = possibleCharacters.concat(numericCharacters);
-    gauranteedCharacters.push(getRandom(specialCharacters))
+    gauranteedCharacters.push(getRandom(numericCharacters));
   };
 
   // For loop through array * character count
   for (var i = 0; i < options.length; i++) {
     var possibleCharacter = getRandom(possibleCharacters);
+    
     result.push(possibleCharacter);
   }
 
